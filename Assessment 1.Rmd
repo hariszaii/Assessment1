@@ -40,3 +40,7 @@ extreme_poverty <- extreme_poverty %>%
   )
 ```
 
+## Data set variables:
+The data set has three main variables: Country, Year and share of population living in extreme poverty. These variables identify time period, geographical location and proportion of people who live in extreme conditions.
+
+
