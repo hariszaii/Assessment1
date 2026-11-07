@@ -50,7 +50,7 @@ names(extreme_poverty) <- c(
 ```
 
 ```{r}
-knitr::kable(data.frame(Variable_Names = names(extreme_poverty)))
+knitr::kable(data.frame(Variable_Names = names(extreme_poverty)), caption = "Table 1: Variables included in the dataset.")
 ```
 
 
