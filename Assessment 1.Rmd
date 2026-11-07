@@ -5,6 +5,16 @@ date: "2026-11-07"
 output: html_document
 ---
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(fig.align = "center")
+
+library(ggplot2)
+library(dplyr)
+library(readr)
+library(knitr)
+```
+
+
 ```{r, include=FALSE}
 extreme_poverty <- read.csv("Data/share-of-population-in-extreme-poverty.csv")
 ```
