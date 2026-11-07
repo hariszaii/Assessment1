@@ -371,6 +371,15 @@ poverty over time across different countries. The data provides
 information in which we can investigate global inequality trends and
 differences, the data has been sourced from Our World in Data (Our World
 in Data, n.d.).</p>
+<pre class="r"><code>extreme_poverty &lt;- read.csv(&quot;Data/share-of-population-in-extreme-poverty.csv&quot;)</code></pre>
+<pre class="r"><code>extreme_poverty &lt;- extreme_poverty %&gt;%
+   select(
+    Entity,
+    Year,
+     Share.of.population.in.poverty...3.a.day.,
+    Population,
+     World.region.according.to.OWID
+  )</code></pre>
 </div>
 <div id="data-set-variables" class="section level2">
 <h2>Data set variables:</h2>
@@ -378,6 +387,38 @@ in Data, n.d.).</p>
 population living in extreme poverty. These variables identify time
 period, geographical location and proportion of people who live in
 extreme conditions.</p>
+<pre class="r"><code>names(extreme_poverty) &lt;- c(
+  &quot;Country&quot;,
+  &quot;Year&quot;,
+  &quot;Poverty_Rate&quot;,
+  &quot;Population&quot;,
+  &quot;World_Region&quot;
+)</code></pre>
+<pre class="r"><code>knitr::kable(data.frame(Variable_Names = names(extreme_poverty)))</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Variable_Names</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Country</td>
+</tr>
+<tr class="even">
+<td align="left">Year</td>
+</tr>
+<tr class="odd">
+<td align="left">Poverty_Rate</td>
+</tr>
+<tr class="even">
+<td align="left">Population</td>
+</tr>
+<tr class="odd">
+<td align="left">World_Region</td>
+</tr>
+</tbody>
+</table>
 </div>
 
 

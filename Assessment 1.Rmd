@@ -15,32 +15,43 @@ library(knitr)
 ```
 
 
-```{r, include=FALSE}
-extreme_poverty <- read.csv("Data/share-of-population-in-extreme-poverty.csv")
-```
-
-```{r, include=FALSE}
-write.csv(extreme_poverty, file = "Data/share-of-population-in-extreme-poverty.csv", row.names = FALSE)
-```
-
 ## Research Question: 
 In this report we will investigate the proportion of population living in extreme poverty and, how this varies across countries. We aim to identify trends, patterns and differences in global economic inequality.
 
 ## Introduction: 
 Our data looks at the proportion of the population living in extreme poverty over time across different countries. The data provides information in which we can investigate global inequality trends and differences, the data has been sourced from Our World in Data (Our World in Data, n.d.).
 
-```{r dataset variables, include=FALSE}
+```{r}
+extreme_poverty <- read.csv("Data/share-of-population-in-extreme-poverty.csv")
+```
+
+```{r}
 extreme_poverty <- extreme_poverty %>%
-  select(
+   select(
     Entity,
     Year,
-    Share.of.population.in.poverty...3.a.day.,
+     Share.of.population.in.poverty...3.a.day.,
     Population,
-    World.region.according.to.OWID
+     World.region.according.to.OWID
   )
 ```
 
 ## Data set variables:
 The data set has three main variables: Country, Year and share of population living in extreme poverty. These variables identify time period, geographical location and proportion of people who live in extreme conditions.
+
+```{r}
+names(extreme_poverty) <- c(
+  "Country",
+  "Year",
+  "Poverty_Rate",
+  "Population",
+  "World_Region"
+)
+```
+
+```{r}
+knitr::kable(data.frame(Variable_Names = names(extreme_poverty)))
+```
+
 
 
