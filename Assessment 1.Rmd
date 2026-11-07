@@ -1,0 +1,15 @@
+---
+title: "Global Inequality Across the World"
+author: "Haris Muhammadzai"
+date: "2026-11-07"
+output: html_document
+---
+
+```{r, include=FALSE}
+extreme_poverty <- read.csv("Data/share-of-population-in-extreme-poverty.csv")
+```
+
+```{r, include=FALSE}
+write.csv(extreme_poverty, file = "Data/share-of-population-in-extreme-poverty.csv", row.names = FALSE)
+```
+
