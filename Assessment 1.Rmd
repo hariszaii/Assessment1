@@ -67,7 +67,37 @@ The following output displays the first two observations and data types of each 
 str(head(extreme_poverty, 2))
 ```
 
+## Data Summary
 
+```{r}
+country_summary <- extreme_poverty %>%
+  select(Country, Population, Poverty_Rate) %>%
+  group_by(Country) %>%
+  summarise(
+    Mean_poverty = mean(Poverty_Rate, na.rm = TRUE),
+    Max_poverty = max(Poverty_Rate, na.rm = TRUE),
+  ) %>%
+  ungroup()
+
+poorest <- country_summary %>%
+  arrange(desc(Mean_poverty)) %>%
+  head(5) %>%
+  mutate(Category = "Highest")
+
+richest <- country_summary %>%
+  arrange(Mean_poverty) %>%
+  head(5) %>%
+  mutate(Category = "Lowest")
+
+poverty_comparison <- bind_rows(poorest, richest)
+
+knitr::kable(
+  poverty_comparison,
+  caption = "Table 1: Countries with the Highest and Lowest Poverty Rates"
+)
+```
+
+The data summary table shows the extreme inequality in poverty rates between countries, demonstrating different parts of the world experiencing higher poverty rates. Therefore, demonstrating the **inequality** in global living standards and economic disparities between countries. 
 
 
 

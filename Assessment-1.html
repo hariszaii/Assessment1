@@ -441,6 +441,113 @@ types of each variable.</p>
 ##  $ Population  : logi  NA NA
 ##  $ World_Region: chr  &quot;&quot; &quot;&quot;</code></pre>
 </div>
+<div id="data-summary" class="section level2">
+<h2>Data Summary</h2>
+<pre class="r"><code>country_summary &lt;- extreme_poverty %&gt;%
+  select(Country, Population, Poverty_Rate) %&gt;%
+  group_by(Country) %&gt;%
+  summarise(
+    Mean_poverty = mean(Poverty_Rate, na.rm = TRUE),
+    Max_poverty = max(Poverty_Rate, na.rm = TRUE),
+  ) %&gt;%
+  ungroup()
+
+poorest &lt;- country_summary %&gt;%
+  arrange(desc(Mean_poverty)) %&gt;%
+  head(5) %&gt;%
+  mutate(Category = &quot;Highest&quot;)
+
+richest &lt;- country_summary %&gt;%
+  arrange(Mean_poverty) %&gt;%
+  head(5) %&gt;%
+  mutate(Category = &quot;Lowest&quot;)
+
+poverty_comparison &lt;- bind_rows(poorest, richest)
+
+knitr::kable(
+  poverty_comparison,
+  caption = &quot;Table 1: Countries with the Highest and Lowest Poverty Rates&quot;
+)</code></pre>
+<table>
+<caption>Table 1: Countries with the Highest and Lowest Poverty
+Rates</caption>
+<thead>
+<tr class="header">
+<th align="left">Country</th>
+<th align="right">Mean_poverty</th>
+<th align="right">Max_poverty</th>
+<th align="left">Category</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Democratic Republic of Congo</td>
+<td align="right">85.31767</td>
+<td align="right">85.31767</td>
+<td align="left">Highest</td>
+</tr>
+<tr class="even">
+<td align="left">Mozambique</td>
+<td align="right">81.36138</td>
+<td align="right">81.36138</td>
+<td align="left">Highest</td>
+</tr>
+<tr class="odd">
+<td align="left">Burundi</td>
+<td align="right">74.19918</td>
+<td align="right">74.19918</td>
+<td align="left">Highest</td>
+</tr>
+<tr class="even">
+<td align="left">Zambia</td>
+<td align="right">71.65615</td>
+<td align="right">71.65615</td>
+<td align="left">Highest</td>
+</tr>
+<tr class="odd">
+<td align="left">Central African Republic</td>
+<td align="right">71.61735</td>
+<td align="right">71.61735</td>
+<td align="left">Highest</td>
+</tr>
+<tr class="even">
+<td align="left">Belarus</td>
+<td align="right">0.00000</td>
+<td align="right">0.00000</td>
+<td align="left">Lowest</td>
+</tr>
+<tr class="odd">
+<td align="left">China</td>
+<td align="right">0.00000</td>
+<td align="right">0.00000</td>
+<td align="left">Lowest</td>
+</tr>
+<tr class="even">
+<td align="left">Czechia</td>
+<td align="right">0.00000</td>
+<td align="right">0.00000</td>
+<td align="left">Lowest</td>
+</tr>
+<tr class="odd">
+<td align="left">Moldova</td>
+<td align="right">0.00000</td>
+<td align="right">0.00000</td>
+<td align="left">Lowest</td>
+</tr>
+<tr class="even">
+<td align="left">Slovenia</td>
+<td align="right">0.00000</td>
+<td align="right">0.00000</td>
+<td align="left">Lowest</td>
+</tr>
+</tbody>
+</table>
+<p>The data summary table shows the extreme inequality in poverty rates
+between countries, demonstrating different parts of the world
+experiencing higher poverty rates. Therefore, demonstrating the
+<strong>inequality</strong> in global living standards and economic
+disparities between countries.</p>
+</div>
 
 
 
