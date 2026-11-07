@@ -36,8 +36,8 @@ extreme_poverty <- extreme_poverty %>%
   )
 ```
 
-## Data set variables:
-The data set has three main variables: Country, Year and share of population living in extreme poverty. These variables identify time period, geographical location and proportion of people who live in extreme conditions.
+## Dataset variables:
+The dataset has three main variables: Country, Year and share of population living in extreme poverty. These variables identify time period, geographical location and proportion of people who live in extreme conditions.
 
 ```{r}
 names(extreme_poverty) <- c(
@@ -52,6 +52,23 @@ names(extreme_poverty) <- c(
 ```{r}
 knitr::kable(data.frame(Variable_Names = names(extreme_poverty)), caption = "Table 1: Variables included in the dataset.")
 ```
+
+## Dataset description
+
+The dataset contains `r nrow(extreme_poverty)` observations and `r ncol(extreme_poverty)` variables. 
+
+```{r, fig.align="left", fig.cap="Figure 1: Number of observations and variables in the dataset."}
+knitr::include_graphics("Image/R Code Screenshot.png")
+```
+
+The following output displays the first two observations and data types of each variable.
+
+```{r}
+str(head(extreme_poverty, 2))
+```
+
+
+
 
 
 
