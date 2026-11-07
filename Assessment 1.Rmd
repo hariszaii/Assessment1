@@ -5,6 +5,9 @@ date: "2026-11-07"
 output: html_document
 ---
 
+## Research Question: 
+In this report we will investigate the proportion of population living in extreme poverty and, how this varies across countries. We aim to identify trends, patterns and differences in global economic inequality.
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(fig.align = "center")
 
