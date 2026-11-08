@@ -1,5 +1,5 @@
 ---
-title: "Global Inequality Across the World"
+title: "Global Economic Inequality Across Countries"
 author: "Haris Muhammadzai"
 date: "2026-11-07"
 output:
@@ -32,10 +32,10 @@ knitr::opts_chunk$set(
 *Generative AI has only been used to find and help debug errors in code.*
 
 ## Research Question: 
-In this report we will investigate the proportion of population living in extreme poverty and, how this varies across countries. We aim to identify trends, patterns and differences in global economic inequality.
+In this report we will investigate the proportion of the population living in extreme poverty and, how this varies across countries. We aim to identify trends, patterns and differences in global economic inequality.
 
 ## Introduction: 
-Our data looks at the proportion of the population living in extreme poverty over time across different countries. The data provides information in which we can investigate global inequality trends and differences, the data has been sourced from Our World in Data (Our World in Data, n.d.).
+Our data looks at the proportion of the population living in extreme poverty over time across different countries. The data provides information in which we can investigate global economic inequality trends and differences, the data has been sourced from Our World in Data (Our World in Data, n.d.).
 
 ```{r}
 extreme_poverty <- read.csv("Data/share-of-population-in-extreme-poverty.csv")
@@ -86,7 +86,6 @@ The data set contains `r nrow(extreme_poverty)` observations and `r ncol(extreme
 ```{r, fig.align='left', out.width="40%", fig.cap="Figure 1: Number of observations and variables."}
 knitr::include_graphics("Image/R Code Screenshot.png")
 ```
-
 
 
 The following output displays the first two observations and data types of each variable.
