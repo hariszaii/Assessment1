@@ -118,7 +118,9 @@ ggplot(poverty_comparison, aes(x = Country, y = Max_poverty, colour = Country)) 
   )
 ```
 
+- *The scatter plot in Figure 2 signifies the differences in living standards between different countries. We can see the stark difference between the richest and poorest countries through the percentage of their population living in poverty.* 
 
+- *We have used different colours and country labels to make it easier to compare the results. As shown in the figure, the Democratic Republic of Congo and Mozambique had some of the highest poverty rates whilst, Belarus, China and Czechia the lowest.* 
 
 
 
