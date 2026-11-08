@@ -12,6 +12,7 @@ library(ggplot2)
 library(dplyr)
 library(readr)
 library(knitr)
+library(ggrepel)
 ```
 
 
@@ -100,6 +101,22 @@ knitr::kable(
 The data summary table shows the extreme inequality in poverty rates between countries, demonstrating different parts of the world experiencing higher poverty rates. Therefore, demonstrating the **inequality** in global living standards and economic disparities between countries. 
 
 ## Visualisations:
+
+```{r, fig.cap="Figure 2: The percentage of population living in extreme poverty across the world."}
+ggplot(poverty_comparison, aes(x = Country, y = Max_poverty, colour = Country)) +
+  geom_jitter(width = 0.2, height = 0, size = 3) +
+  geom_text_repel(aes(label = Country), size = 3, show.legend = FALSE) +
+  labs(
+    title = "Poverty across countries",
+    x = "Country",
+    y = "% of population living in poverty"
+  ) +
+  theme(
+    axis.text.x = element_blank(),
+    axis.ticks.x = element_blank(),
+    legend.position = "none"
+  )
+```
 
 
 
