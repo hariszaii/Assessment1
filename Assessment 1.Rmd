@@ -2,7 +2,10 @@
 title: "Global Inequality Across the World"
 author: "Haris Muhammadzai"
 date: "2026-11-07"
-output: html_document
+output:
+  html_document:
+    css: styles.css
+  
 ---
 
 ```{r setup, include=FALSE}
@@ -13,6 +16,17 @@ library(dplyr)
 library(readr)
 library(knitr)
 library(ggrepel)
+library(kableExtra)
+
+knitr::opts_chunk$set(
+  fig.align = "center",
+  fig.width = 4,
+  fig.height = 2.2,
+  out.width = "45%",
+  warning = FALSE,
+  message = FALSE,
+  comment = NA
+)
 ```
 
 
@@ -51,16 +65,28 @@ names(extreme_poverty) <- c(
 ```
 
 ```{r}
-knitr::kable(data.frame(Variable_Names = names(extreme_poverty)), caption = "Table 1: Variables included in the dataset.")
+knitr::kable(
+  data.frame(Variable_Names = names(extreme_poverty)),
+  caption = "Table 1: Variables."
+) %>%
+  kableExtra::kable_styling(
+    font_size = 7,
+    full_width = FALSE,
+    position = "left"
+  )
 ```
+
+
 
 ## Data set description:
 
 The data set contains `r nrow(extreme_poverty)` observations and `r ncol(extreme_poverty)` variables. 
 
-```{r, fig.align="left", fig.cap="Figure 1: Number of observations and variables in the dataset."}
+```{r, fig.align='center', out.width="35%", fig.cap="Figure 1: Number of observations and variables."}
 knitr::include_graphics("Image/R Code Screenshot.png")
 ```
+
+
 
 The following output displays the first two observations and data types of each variable.
 
@@ -94,15 +120,22 @@ poverty_comparison <- bind_rows(poorest, richest)
 
 knitr::kable(
   poverty_comparison,
-  caption = "Table 1: Countries with the Highest and Lowest Poverty Rates"
-)
+  digits = 2,
+  caption = "Table 2: Countries with the Highest and Lowest Poverty Rates"
+) %>%
+  kableExtra::kable_styling(
+    font_size = 7,
+    full_width = FALSE,
+    position = "left"
+  )
 ```
 
 The data summary table shows the extreme inequality in poverty rates between countries, demonstrating different parts of the world experiencing higher poverty rates. Therefore, demonstrating the **inequality** in global living standards and economic disparities between countries. 
 
 ## Visualisations:
 
-```{r, fig.cap="Figure 2: The percentage of population living in extreme poverty across the world."}
+
+```{r, fig.width=4, fig.height=2, out.width="45%", fig.align="center", fig.cap="Figure 2: The percentage of population living in extreme poverty across the world."}
 ggplot(poverty_comparison, aes(x = Country, y = Max_poverty, colour = Country)) +
   geom_jitter(width = 0.2, height = 0, size = 3) +
   geom_text_repel(aes(label = Country), size = 3, show.legend = FALSE) +
@@ -117,6 +150,7 @@ ggplot(poverty_comparison, aes(x = Country, y = Max_poverty, colour = Country)) 
     legend.position = "none"
   )
 ```
+
 
 - *The scatter plot in Figure 2 signifies the differences in living standards between different countries. We can see the stark difference between the richest and poorest countries through the percentage of their population living in poverty.* 
 
