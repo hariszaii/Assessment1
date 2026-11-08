@@ -82,7 +82,7 @@ knitr::kable(
 
 The data set contains `r nrow(extreme_poverty)` observations and `r ncol(extreme_poverty)` variables. 
 
-```{r, fig.align='center', out.width="35%", fig.cap="Figure 1: Number of observations and variables."}
+```{r, fig.align='left', out.width="40%", fig.cap="Figure 1: Number of observations and variables."}
 knitr::include_graphics("Image/R Code Screenshot.png")
 ```
 
@@ -121,7 +121,7 @@ poverty_comparison <- bind_rows(poorest, richest)
 knitr::kable(
   poverty_comparison,
   digits = 2,
-  caption = "Table 2: Countries with the Highest and Lowest Poverty Rates"
+  caption = "Table 2: Poverty Rates Across Countries"
 ) %>%
   kableExtra::kable_styling(
     font_size = 7,
@@ -130,19 +130,40 @@ knitr::kable(
   )
 ```
 
-The data summary table shows the extreme inequality in poverty rates between countries, demonstrating different parts of the world experiencing higher poverty rates. Therefore, demonstrating the **inequality** in global living standards and economic disparities between countries. 
+```{r}
+poverty_statistics <- extreme_poverty %>%
+  summarise(
+    Countries = n(),
+    Mean = round(mean(Poverty_Rate, na.rm = TRUE), 2),
+    Median = round(median(Poverty_Rate, na.rm = TRUE), 2),
+    Minimum = round(min(Poverty_Rate, na.rm = TRUE), 2),
+    Maximum = round(max(Poverty_Rate, na.rm = TRUE), 2),
+    Standard_Deviation = round(sd(Poverty_Rate, na.rm = TRUE), 2)
+  )
+
+knitr::kable(
+  poverty_statistics,
+  caption = "Table 3. Summary Statistics of Poverty"
+)
+```
+
+
+Table 2 shows the extreme inequality in poverty rates between countries, demonstrating different parts of the world experiencing higher poverty rates. Therefore, demonstrating the **inequality** in global living standards and economic disparities between countries. 
+
+Furthermore, table 3 shows the summary of the poverty statistics gathered from the data. Out of 116 countries, the mean poverty rate is 10.96%, median is 1.15%, the minimum was 0% and the maximum was 85.32%. 
+
 
 ## Visualisations:
 
 
-```{r, fig.width=4, fig.height=2, out.width="45%", fig.align="center", fig.cap="Figure 2: The percentage of population living in extreme poverty across the world."}
+```{r, fig.width=4, fig.height=2, out.width="50%", fig.align="left", fig.cap="Figure 2: Percentage of population living in poverty."}
 ggplot(poverty_comparison, aes(x = Country, y = Max_poverty, colour = Country)) +
   geom_jitter(width = 0.2, height = 0, size = 3) +
   geom_text_repel(aes(label = Country), size = 3, show.legend = FALSE) +
   labs(
     title = "Poverty across countries",
     x = "Country",
-    y = "% of population living in poverty"
+    y = "% of population"
   ) +
   theme(
     axis.text.x = element_blank(),
@@ -151,12 +172,29 @@ ggplot(poverty_comparison, aes(x = Country, y = Max_poverty, colour = Country)) 
   )
 ```
 
-
 - *The scatter plot in Figure 2 signifies the differences in living standards between different countries. We can see the stark difference between the richest and poorest countries through the percentage of their population living in poverty.* 
 
 - *We have used different colours and country labels to make it easier to compare the results. As shown in the figure, the Democratic Republic of Congo and Mozambique had some of the highest poverty rates whilst, Belarus, China and Czechia the lowest.* 
 
+```{r, fig.width=4, fig.height=2, out.width="50%", fig.align='left', fig.cap="Figure 3: Countries with the highest extreme poverty rates."}
+top10_poverty <- extreme_poverty %>%
+  arrange(desc(Poverty_Rate)) %>%
+  slice_head(n = 5)
+
+ggplot(top10_poverty, aes(x = reorder(Country, Poverty_Rate),
+                          y = Poverty_Rate)) +
+  geom_point(size = 2) +
+  coord_flip() +
+  labs(
+    x = "Country",
+    y = "Population (%)"
+  ) +
+  theme_minimal()
+```
+- *Figure 3 displays a dot plot of the countries with the highest poverty rates. The Democratic Republic of Congo, Mozambique, Burundi, Zambia and Central African Republic were the five countries with the highest poverty rates. The Democratic Republic of Congo had the highest rate with 85.32% of its population living in poverty.*
+
 ## Conclusion: 
+Our report identified considerable differences in the poverty levels across different countries. Out of the 116 countries examined, the average poverty rate was 10.96% whilst the median was lower at 1.15%. What this shows Is that extreme poverties are concentrated to a smaller pool of countries such as the Democratic Republic of Congo and Mozambique which reported the highest poverty rates. Belarus, China and Czechia on the other hand reported the lowest poverty rates which highlight the significant economic disparities between different nations. Overall, our results show that extreme poverty is not distributed evenly across nations but rather there are broader patterns of global economic inequality. Therefore, these results address our research question through identifying variations in extreme poverty rates between different nations.
 
 
 
