@@ -29,6 +29,7 @@ knitr::opts_chunk$set(
 )
 ```
 
+*Generative AI has only been used to find and help debug errors in code.*
 
 ## Research Question: 
 In this report we will investigate the proportion of population living in extreme poverty and, how this varies across countries. We aim to identify trends, patterns and differences in global economic inequality.
