@@ -12,6 +12,7 @@ library(ggplot2)
 library(dplyr)
 library(readr)
 library(knitr)
+library(ggrepel)
 ```
 
 
@@ -36,8 +37,8 @@ extreme_poverty <- extreme_poverty %>%
   )
 ```
 
-## Dataset variables:
-The dataset has three main variables: Country, Year and share of population living in extreme poverty. These variables identify time period, geographical location and proportion of people who live in extreme conditions.
+## Data set variables:
+The data set has three main variables: Country, Year and share of population living in extreme poverty. These variables identify time period, geographical location and proportion of people who live in extreme conditions.
 
 ```{r}
 names(extreme_poverty) <- c(
@@ -53,9 +54,9 @@ names(extreme_poverty) <- c(
 knitr::kable(data.frame(Variable_Names = names(extreme_poverty)), caption = "Table 1: Variables included in the dataset.")
 ```
 
-## Dataset description
+## Data set description:
 
-The dataset contains `r nrow(extreme_poverty)` observations and `r ncol(extreme_poverty)` variables. 
+The data set contains `r nrow(extreme_poverty)` observations and `r ncol(extreme_poverty)` variables. 
 
 ```{r, fig.align="left", fig.cap="Figure 1: Number of observations and variables in the dataset."}
 knitr::include_graphics("Image/R Code Screenshot.png")
@@ -67,7 +68,7 @@ The following output displays the first two observations and data types of each 
 str(head(extreme_poverty, 2))
 ```
 
-## Data Summary
+## Data Summary:
 
 ```{r}
 country_summary <- extreme_poverty %>%
@@ -99,6 +100,29 @@ knitr::kable(
 
 The data summary table shows the extreme inequality in poverty rates between countries, demonstrating different parts of the world experiencing higher poverty rates. Therefore, demonstrating the **inequality** in global living standards and economic disparities between countries. 
 
+## Visualisations:
+
+```{r, fig.cap="Figure 2: The percentage of population living in extreme poverty across the world."}
+ggplot(poverty_comparison, aes(x = Country, y = Max_poverty, colour = Country)) +
+  geom_jitter(width = 0.2, height = 0, size = 3) +
+  geom_text_repel(aes(label = Country), size = 3, show.legend = FALSE) +
+  labs(
+    title = "Poverty across countries",
+    x = "Country",
+    y = "% of population living in poverty"
+  ) +
+  theme(
+    axis.text.x = element_blank(),
+    axis.ticks.x = element_blank(),
+    legend.position = "none"
+  )
+```
+
+- *The scatter plot in Figure 2 signifies the differences in living standards between different countries. We can see the stark difference between the richest and poorest countries through the percentage of their population living in poverty.* 
+
+- *We have used different colours and country labels to make it easier to compare the results. As shown in the figure, the Democratic Republic of Congo and Mozambique had some of the highest poverty rates whilst, Belarus, China and Czechia the lowest.* 
+
+## Conclusion: 
 
 
 
